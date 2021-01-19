@@ -5,6 +5,10 @@ name = "pypi"
 
 [packages]
 requests = "*"
+django-extensions = "*"
+django = "*"
+flexpolyline = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 
