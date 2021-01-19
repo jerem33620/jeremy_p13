@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+
+<header class="product-head">
+    <img src="{% static 'img/image-favoris.jpg' %}" alt="image de fond pour account" class="product-image">
+
+    {% block header_content %}
+
+    <h2 class="product-head-title">{{ user.username }}!</h2>
+
+    {% endblock %}
+    
+</header> 
+    
+{% endblock %}
+
+{% block content %}
+
+    <p class="account-email">Votre adresse email: {{ user.email }}</p>
+    
+{% endblock %}

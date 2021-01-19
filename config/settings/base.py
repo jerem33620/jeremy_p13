@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'crispy_forms',
     'pages.apps.PagesConfig',
+    'users.apps.UsersConfig',
+    'home.apps.HomeConfig',
 ]
 
 MIDDLEWARE = [
@@ -104,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'UTC'
 
@@ -122,6 +124,18 @@ STATIC_URL = '/static/'
 STATIC_ROOT = str(BASE_DIR / 'staticfiles')
 STATICFILES_DIRS = [str(BASE_DIR / '_static/dist')]
 
-HERE_API_KEY = os.getenv("w4b-zYAz6ug9OK6MW0YAhafVIWaTe4SPFKMeMRQX1nU")
+HERE_API_KEY = os.getenv("HERE_API_KEY")
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+AUTH_USER_MODEL = "users.User"
+
+LOGIN_URL = "/users/login"
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'jeremyprojet11@gmail.com'
+EMAIL_HOST_PASSWORD = 'pascaph2466'
+EMAIL_USE_TLS = True
