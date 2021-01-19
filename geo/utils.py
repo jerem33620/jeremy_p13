@@ -1,6 +1,5 @@
 import math
 
-
 # Semi-axes of WGS-84 geoidal reference
 EARTH_RADIUS_EQUATOR = 6378137.0
 EARTH_RADIUS_POLE = 6356752.3
@@ -19,10 +18,10 @@ def rad2deg(radians):
 def get_earth_radius(latitude):
     """Computes earth radius as a function of the latitude.
     From:  http://en.wikipedia.org/wiki/Earth_radius"""
-    a_n = EARTH_RADIUS_EQUATOR ** 2 * math.cos(lat)
-    b_n = EARTH_RADIUS_POLE ** 2 * math.sin(lat)
-    a_d = EARTH_RADIUS_EQUATOR * math.cos(lat)
-    b_d = EARTH_RADIUS_POLE * math.sin(lat)
+    a_n = EARTH_RADIUS_EQUATOR ** 2 * math.cos(latitude)
+    b_n = EARTH_RADIUS_POLE ** 2 * math.sin(latitude)
+    a_d = EARTH_RADIUS_EQUATOR * math.cos(latitude)
+    b_d = EARTH_RADIUS_POLE * math.sin(latitude)
     return math.sqrt((a_n ** 2 + b_n ** 2) / (a_d ** 2 + b_d ** 2))
 
 
@@ -62,7 +61,7 @@ def get_bounding_box_string(latitude_deg, longitude_deg, half_side_meters):
     Returns:
         bbox string of the form bbox:{west},{south},{east},{north}
     """
-    coordinate = get_bounding_box(
+    coordinates = get_bounding_box(
         latitude_deg, longitude_deg, half_side_meters
     )
     return f"bbox:{','.join(coordinates)}"

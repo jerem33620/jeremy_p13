@@ -2,7 +2,6 @@ import re
 import os
 
 import requests
-from flexpolyline import decode
 
 from .utils import get_bounding_box_string
 
