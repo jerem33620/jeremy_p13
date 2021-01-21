@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
+    'bridges.apps.BridgesConfig',
+    'vehicles.apps.VehiclesConfig',
 ]
 
 MIDDLEWARE = [
