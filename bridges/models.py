@@ -29,7 +29,7 @@ class Bridge(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.SET_NULL,
         null=True,
-        related_name="bridges",
+        related_name="last_contributor_bridges",
     )
     created_date = models.DateTimeField(
         auto_now_add=True,

@@ -17,6 +17,8 @@ class Vehicle(models.Model):
     name = models.CharField(
         "vehicle name",
         max_length=200,
+        blank=None,
+        null=True,
     )
     gross_weight = models.IntegerField(
         "vehicle gross weight",
