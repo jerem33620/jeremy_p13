@@ -67,7 +67,7 @@
 
         <!-- Masthead-->
         {% block header %}
-        <header class="masthead">
+        <header class="masthead flex-shrink-0">
             <div class="container h-100">
                 <div class="row h-100 align-items-center justify-content-center text-center">
                     {% block header_title %}
@@ -81,10 +81,14 @@
         </header>
         {% endblock header %}
 
-        {% block content %}{% endblock content %}
+        <main class="flex-grow-1 flex-shrink-0">
+            {% block content %}
+            {% endblock %}
+        </main>
+
         {% block footer %}
         <!-- Footer-->
-        <footer class="bg-light py-5">
+        <footer class="bg-light py-5 flex-grow-0 flex-shrink-0">
             <div class="container">
                 <div class="small text-center text-muted">Copyright © 2021 - Jeremy Guyot</div>
             </div>

@@ -1,37 +1,34 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static crispy_forms_tags %}
 
 {% block header %}
-<header class="masthead" style="background-image: none; background-color: #5c4d42;">
-    {% block header_content %}
-    {% if form.errors %}
-        <p style="color: red">Votre nom d’utilisateur et votre mot de passe ne correspondent pas. Veuillez réessayer.</p>
-    {% endif %}
-    <h2>Connectez-vous à mon site</h2>
-    {% endblock %}
+<header class="masthead">
+    <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+            {% block header_title %}
+            <div class="col-lg-10 align-self-end">
+                <h1 class="text-uppercase text-white font-weight-bold">Connectez-vous au site !</h1>
+                <hr class="divider my-4" />
+            </div>
+            {% endblock header_title %}
+        </div>
+    </div>
 </header>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <form method="post">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}" />
-        {% for field in form %}
-            <p>
-                {{ field.label_tag }}<br>
-                {{ field }}<br>
-                {% for error in field.errors %}
-                    <p style="color: red">{{ error }}</p>
-                {% endfor %}
-                {% if field.help_text %}
-                    <p><small style="color: grey">{{ field.help_text }}</small></p>
-                {% endif %}
-            </p>
-        {% endfor %}
-        <button type="submit" id="button-submit">Se connecter</button>
-        <p><a href="{% url 'signup' %}">Nouveau sur le site? Inscrivez-vous</a></p>
-        <p><a id="button-passcode" href="{% url 'password_reset' %}">Mot de passe oublié? Réinitialisez votre mot de passe</a></p>
-    </form>
+    <div class="row d-flex justify-content-center m-4 flex-column">
+        <form method="post mb-2">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}" />
+            {{ form|crispy }}
+            <button type="submit" id="button-submit" class="btn btn-primary">Se connecter</button>
+        </form>
+        <p class="row p-3 d-flex flex-column">
+            <a href="{% url 'signup' %} ">Nouveau sur le site? Inscrivez-vous</a>
+            <a id="button-passcode" href="{% url 'password_reset' %}">Mot de passe oublié? Réinitialisez votre mot de passe</a>
+        </p>
+    </div>
 </div>
 {% endblock %}
