@@ -21,5 +21,7 @@ urlpatterns = [
     path('', include('pages.urls', namespace='pages')),
     path('users/', include('users.urls')),
     path('users/', include('django.contrib.auth.urls')),
-    path('', include('home.urls'))
+    path('', include('home.urls')),
+    path('vehicles/', include('vehicles.urls', namespace='vehicles')),
+    path('bridges/', include('bridges.urls', namespace='bridges')),
 ]

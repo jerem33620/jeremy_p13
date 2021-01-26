@@ -22,7 +22,7 @@ class Vehicle(models.Model):
     )
     gross_weight = models.IntegerField(
         "vehicle gross weight",
-        blank=None,
+        blank=True,
         null=True,
     )
     height = models.DecimalField(
