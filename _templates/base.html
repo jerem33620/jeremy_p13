@@ -51,6 +51,7 @@
                         <li class="nav-item">
                         {% if user.is_authenticated %}
                             <a class="nav-link js-scroll-trigger" href="{% url 'accountlog' %}"><i class="fas fa-user"></i></a>
+                            <a class="nav-link js-scroll-trigger" href="#"><i class="fas fa-truck-moving"></i></a>
                         {% else %}
                             <a class="nav-link js-scroll-trigger" id="button-login" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i></a>
                         {% endif %}
