@@ -1,3 +1,14 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 
-# Create your views here.
+from .models import Bridge
+
+class BridgeCreate(CreateView):
+    template_name = 'bridges/register.html'
+    model = Bridge
+    fields = (
+            'latitude',
+            'longitude',
+            'height',
+            'width',
+        )

@@ -6,16 +6,20 @@ class Bridge(models.Model):
     height = models.DecimalField(
         max_digits=4,
         decimal_places=2,
+        blank=True,
+        null=True,
     )
     width = models.DecimalField(
         max_digits=4,
         decimal_places=2,
+        blank=True,
+        null=True,
     )
     latitude = models.DecimalField(
         max_digits=10,
         decimal_places=7,
     )
-    longitute = models.DecimalField(
+    longitude = models.DecimalField(
         max_digits=10,
         decimal_places=7,
     )
