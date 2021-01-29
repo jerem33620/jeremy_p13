@@ -7,7 +7,11 @@
         <div class="row align-items-center justify-content-center text-center">
             {% block header_title %}
             <div class="col-lg-10 align-self-end header-top">
+<<<<<<< HEAD
                 <h1 class="text-uppercase text-white font-weight-bold">Bienvenue sur votre page de profil !</h1>
+=======
+                <h1 class="text-uppercase text-white font-weight-bold">Vois-ci votre Profil !</h1>
+>>>>>>> 8f28762e073aed00a8c00a44033ae2565ca7ace5
                 <hr class="divider my-4" />
             </div>
             {% endblock header_title %}
@@ -18,14 +22,14 @@
 
 {% block content %}
 <div class="masthead m-4">
-    <div class="text-account">
-        <p>Votre nom d'utilisateur: {{ user.username }}!</p>
-    </div>
-    <div class="text-account">
-        <p>Votre adresse email: {{ user.email }}</p>
-    </div>
-
     <div class="container">
+        <div class="text-account">
+            <p>Votre nom d'utilisateur: {{ user.username }}!</p>
+        </div>
+        <div class="text-account">
+            <p>Votre adresse email: {{ user.email }}</p>
+        </div>
+
         {% for vehicle in vehicles %}
         <div class="text-account">
             <p>Vos véhicules enregistrez: {{ vehicles.name }}</p>
