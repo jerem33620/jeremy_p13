@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'bridges.apps.BridgesConfig',
     'vehicles.apps.VehiclesConfig',
+    'favorites.apps.FavoritesConfig',
 ]
 
 MIDDLEWARE = [

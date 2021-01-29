@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('home.urls')),
     path('vehicles/', include('vehicles.urls', namespace='vehicles')),
     path('bridges/', include('bridges.urls', namespace='bridges')),
+    path('favorites/', include('favorites.urls')),
 ]
