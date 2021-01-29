@@ -7,8 +7,7 @@
         <div class="row align-items-center justify-content-center text-center">
             {% block header_title %}
             <div class="col-lg-10 align-self-end header-top">
-                <h1 class="text-uppercase text-white font-weight-bold">Mot de passe oublié?</h1>
-                <h3>Introduisez votre email ci-dessous</h3>
+                <h1 class="text-uppercase text-white font-weight-bold">Vois-ci votre Profil !</h1>
                 <hr class="divider my-4" />
             </div>
             {% endblock header_title %}
@@ -19,27 +18,29 @@
 
 {% block content %}
 <div class="masthead m-4">
-    <div class="text-account">
-        <p>Votre nom d'utilisateur: {{ user.username }}!</p>
-    </div>
-    <div class="text-account">
-        <p>Votre adresse email: {{ user.email }}</p>
-    </div>
-
     <div class="container">
+        <div class="text-account">
+            <p>Votre nom d'utilisateur: {{ user.username }}!</p>
+        </div>
+        <div class="text-account">
+            <p>Votre adresse email: {{ user.email }}</p>
+        </div>
+
         {% for vehicle in vehicles %}
         <div class="text-account">
             <p>Vos véhicules enregistrez: {{ vehicles.name }}</p>
         </div>
         {% empty %}
-        <p class="text-account">
-            Aucun véhicules enregistrées
-            <button type="submit">
-                <a href="{% url 'vehicles:create' %}">
-                    Ajouter
-                </a>
-            </button>
-        </p>
+        <div class="text-account">
+            <p>
+                Aucun véhicules enregistrées
+                <button type="submit">
+                    <a href="{% url 'vehicles:create' %}">
+                        Ajouter
+                    </a>
+                </button>
+            </p>
+        </div>
         {% endfor %}
 
         {% for bridge in bridges %}
@@ -47,14 +48,16 @@
             <p>Vos tunnels enregistrez: {{ bridges.name }}</p>
         </div>
         {% empty %}
-        <p class="text-account">
-            Aucun ponts enregistrées
-            <button type="submit">
-                <a href="{% url 'bridges:create' %}">
-                    Ajouter
-                </a>
-            </button>
-        </p>
+        <div class="text-account">
+            <p>
+                Aucun ponts enregistrées
+                <button type="submit">
+                    <a href="{% url 'bridges:create' %}">
+                        Ajouter
+                    </a>
+                </button>
+            </p>
+        </div>
         {% endfor %}
     </div>
 </div>
