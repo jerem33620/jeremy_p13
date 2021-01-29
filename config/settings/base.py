@@ -39,10 +39,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'pages.apps.PagesConfig',
     'users.apps.UsersConfig',
-    'home.apps.HomeConfig',
     'bridges.apps.BridgesConfig',
     'vehicles.apps.VehiclesConfig',
-    'favorites.apps.FavoritesConfig',
 ]
 
 MIDDLEWARE = [
@@ -133,12 +131,14 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 AUTH_USER_MODEL = "users.User"
 
-LOGIN_URL = "/users/login"
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "pages:home"
+LOGOUT_REDIRECT_URL = "pages:home"
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'projet13bridge@gmail.com'
-EMAIL_HOST_PASSWORD = 'vivemoi2466'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True

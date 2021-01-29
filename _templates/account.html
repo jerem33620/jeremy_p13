@@ -7,8 +7,7 @@
         <div class="row align-items-center justify-content-center text-center">
             {% block header_title %}
             <div class="col-lg-10 align-self-end header-top">
-                <h1 class="text-uppercase text-white font-weight-bold">Mot de passe oublié?</h1>
-                <h3>Introduisez votre email ci-dessous</h3>
+                <h1 class="text-uppercase text-white font-weight-bold">Bienvenue sur votre page de profil !</h1>
                 <hr class="divider my-4" />
             </div>
             {% endblock header_title %}
@@ -34,11 +33,7 @@
         {% empty %}
         <p class="text-account">
             Aucun véhicules enregistrées
-            <button type="submit">
-                <a href="{% url 'vehicles:create' %}">
-                    Ajouter
-                </a>
-            </button>
+            <a href="{% url 'vehicles:create' %}" class="btn btn-primary">Ajouter un véhicule</a>
         </p>
         {% endfor %}
 
@@ -49,11 +44,7 @@
         {% empty %}
         <p class="text-account">
             Aucun ponts enregistrées
-            <button type="submit">
-                <a href="{% url 'bridges:create' %}">
-                    Ajouter
-                </a>
-            </button>
+            <a href="{% url 'bridges:create' %}" class="btn btn-primary">Ajouter un obstacle rencontré</a>
         </p>
         {% endfor %}
     </div>

@@ -19,9 +19,8 @@
 {% block content %}
 <div class="container">
     <div class="row d-flex justify-content-center m-4 flex-column">
-        <form method="post mb-2">
+        <form method="post" class="mb-2">
             {% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}" />
             {{ form|crispy }}
             <button type="submit" id="button-submit" class="btn btn-primary">Se connecter</button>
         </form>
