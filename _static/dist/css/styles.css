@@ -10142,3 +10142,13 @@ header.masthead h1 {
 .text-white-75 {
   color: rgba(255, 255, 255, 0.75);
 }
+
+.text-account {
+  text-align: center;
+}
+
+.header-top {
+  margin-top: 100px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
