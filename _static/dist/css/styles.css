@@ -10072,10 +10072,44 @@ hr.light {
   }
 }
 
-header.masthead {
+header.homehead {
+  background-image: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("/static/assets/img/bg-masthead.jpg");
   padding-top: 5rem;
   padding-bottom: calc(10rem - 4.5rem);
   background-position: 0 0, 50% 100%;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+header.homehead h1 {
+  font-size: 2.25rem;
+}
+@media (min-width: 992px) {
+  header.homehead {
+    height: 100vh;
+    min-height: 40rem;
+    background-position: 0 0, 50% 80%;
+    padding-top: 4.5rem;
+    padding-bottom: 0;
+  }
+  header.homehead p {
+    font-size: 1.15rem;
+  }
+  header.homehead h1 {
+    font-size: 3rem;
+  }
+}
+@media (min-width: 1200px) {
+  header.homehead h1 {
+    font-size: 3.5rem;
+  }
+}
+
+header.masthead {
+  background-image: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("/static/assets/img/bg-masthead.jpg");
+  background-position: 0 0, 50% 100%;
+  padding-top: 5rem;
+  padding-bottom: calc(10rem - 4.5rem);
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
@@ -10085,8 +10119,6 @@ header.masthead h1 {
 }
 @media (min-width: 992px) {
   header.masthead {
-    height: 100vh;
-    min-height: 40rem;
     background-position: 0 0, 50% 80%;
     padding-top: 4.5rem;
     padding-bottom: 0;
