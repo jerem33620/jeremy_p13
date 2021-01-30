@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 from geo.utils import get_bounding_box
 
