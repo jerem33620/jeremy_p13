@@ -24,14 +24,12 @@ def signup(request):
 
 def accountlog(request):
     """ Cette méthode sert à afficher le compte de l'utilisateur """
-    num_bridges = Bridge.objects.filter(creator=request.user).count()
-    num_vehicles = Vehicle.objects.filter(creator=request.user).count()
+    vehicles = Vehicle.objects.filter(creator=request.user)
     return render(
         request,
         "account.html",
         {
             "account": request.user,
-            "num_bridges": num_bridges,
-            "num_vehicles": num_vehicles,
+            "vehicles": vehicles,
         },
     )

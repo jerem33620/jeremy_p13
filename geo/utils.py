@@ -30,7 +30,7 @@ def get_bounding_box(latitude_deg, longitude_deg, half_side_meters):
     assuming local approximation of Earth surface as a sphere of radius given
     by WGS84.
     Returns:
-        Tuple with west longitude, south latitude, east longitude,
+        dictionary west longitude, south latitude, east longitude,
         north latitude
     """
     lat = deg2rad(latitude_deg)
@@ -46,12 +46,12 @@ def get_bounding_box(latitude_deg, longitude_deg, half_side_meters):
     lng_west = lng - half_side_meters / pradius
     lng_east = lng + half_side_meters / pradius
 
-    return (
-        rad2deg(lng_west),
-        rad2deg(lat_south),
-        rad2deg(lng_east),
-        rad2deg(lat_north),
-    )
+    return {
+        'longitude_west': rad2deg(lng_west),
+        'latitude_south': rad2deg(lat_south),
+        'longitude_east': rad2deg(lng_east),
+        'latitude_north': rad2deg(lat_north),
+    }
 
 
 def get_bounding_box_string(latitude_deg, longitude_deg, half_side_meters):
@@ -64,4 +64,4 @@ def get_bounding_box_string(latitude_deg, longitude_deg, half_side_meters):
     coordinates = get_bounding_box(
         latitude_deg, longitude_deg, half_side_meters
     )
-    return f"bbox:{','.join(coordinates)}"
+    return f"bbox:{','.join(coordinates.values)}"

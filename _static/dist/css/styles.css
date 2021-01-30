@@ -9983,6 +9983,14 @@ html {
   height: 100%;
 }
 
+body {
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}
+
 hr.divider {
   max-width: 3.25rem;
   border-width: 0.2rem;

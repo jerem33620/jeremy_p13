@@ -17,36 +17,17 @@
 {% endblock %}
 
 {% block content %}
-<div class="masthead m-4">
-    <div class="container">
-        <div class="text-account">
-            <p>Votre nom d'utilisateur: {{ user.username }}!</p>
-        </div>
-        <div class="text-account">
-            <p>Votre adresse email: {{ user.email }}</p>
-        </div>
-
-        {% for vehicle in vehicles %}
-        <div class="text-account">
-            <p>Vos véhicules enregistrez: {{ vehicles.name }}</p>
-        </div>
-        {% empty %}
-        <p class="text-account">
-            Aucun véhicules enregistrées
-            <a href="{% url 'vehicles:create' %}" class="btn btn-primary">Ajouter un véhicule</a>
-        </p>
-        {% endfor %}
-
-        {% for bridge in bridges %}
-        <div class="text-account">
-            <p>Vos tunnels enregistrez: {{ bridges.name }}</p>
-        </div>
-        {% empty %}
-        <p class="text-account">
-            Aucun ponts enregistrées
-            <a href="{% url 'bridges:create' %}" class="btn btn-primary">Ajouter un obstacle rencontré</a>
-        </p>
-        {% endfor %}
+<main class="container m-4 d-flex flex-column align-items-center">
+    <div class="row">
+        <p>Votre nom d'utilisateur: {{ user.username }}!</p>
     </div>
-</div>
+    <div class="row">
+        <p>Votre adresse email: {{ user.email }}</p>
+    </div>
+
+    <div class="row">
+        <a class="m-2 btn btn-primary" href="#" class="btn btn-primary">Consulter vos véhicules</a>
+        <a class="m-2 btn btn-primary" href="{% url 'vehicles:create' %}">Ajouter un véhicule</a>
+    </div> 
+</main>
 {% endblock %}

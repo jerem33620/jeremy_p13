@@ -26,7 +26,7 @@
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
         {% endblock styles %}
     </head>
-    <body id="page-top">
+    <body id="page-top" class="d-flex flex-column">
         <!-- Navigation-->
         {% block navigation %}
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
@@ -86,10 +86,10 @@
         </header>
         {% endblock header %}
 
-        <main>
-            {% block content %}
-            {% endblock %}
-        </main>
+
+        {% block content %}
+        <main></main>
+        {% endblock %}
 
         {% block footer %}
         <!-- Footer-->
