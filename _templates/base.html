@@ -26,13 +26,12 @@
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
         <style>
             header.masthead {
-                background:
+                background-image:
                     linear-gradient(
                         to bottom,
                         rgba(92, 77, 66, 0.8) 0%,
                         rgba(92, 77, 66, 0.8) 100%
                     ),
-                    
                     url("{% static 'assets/img/bg-masthead.jpg' %}");
 
             }
@@ -106,9 +105,9 @@
 
         {% block footer %}
         <!-- Footer-->
-        <footer class="bg-light py-5">
+        <footer class="bg-dark py-5">
             <div class="container">
-                <div class="small text-center text-muted">Copyright © 2021 - Jeremy Guyot</div>
+                <div class="small text-center text-light">Copyright © 2021 - Jeremy Guyot</div>
             </div>
         </footer>
         {% endblock footer %}
