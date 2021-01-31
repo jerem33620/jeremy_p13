@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<main class="container">
     <div class="row d-flex justify-content-center m-4 flex-column">
         <form method="post" class="mb-2">
             {% csrf_token %}
@@ -29,5 +29,5 @@
             <a id="button-passcode" href="{% url 'password_reset' %}">Mot de passe oublié? Réinitialisez votre mot de passe</a>
         </p>
     </div>
-</div>
+</main>
 {% endblock %}

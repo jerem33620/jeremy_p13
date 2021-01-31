@@ -17,11 +17,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<main class="container m-4 d-flex justify-content-center">
     <form method="post">
         {% csrf_token %}
         {{ signup_form|crispy }}
         <button type="submit" class="btn btn-primary">s'enregistrer</button>
     </form>
-</div>
+</main>
 {% endblock %}
