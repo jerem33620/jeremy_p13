@@ -126,6 +126,7 @@ STATIC_ROOT = str(BASE_DIR / 'staticfiles')
 STATICFILES_DIRS = [str(BASE_DIR / '_static/dist')]
 
 MEDIA_URL = '/media/'
+MEDIA_ROOT = str(BASE_DIR / '_media')
 
 HERE_API_KEY = os.getenv("HERE_API_KEY")
 
@@ -142,3 +143,5 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 BOUNDING_BOX_HALF_SIDE = 25  # meters
 BRIDGE_MIN_HEIGHT = 2.5  # meters
 BRIDGE_MIN_WIDTH = 3  # meters
+
+USER_AVATAR_SIZE = (200, 200)

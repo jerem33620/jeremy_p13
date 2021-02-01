@@ -17,17 +17,10 @@
 {% endblock %}
 
 {% block content %}
-<main class="container m-4 d-flex flex-column align-items-center">
-    <div class="row">
-        <p>Votre nom d'utilisateur: {{ user.username }}!</p>
-    </div>
-    <div class="row">
-        <p>Votre adresse email: {{ user.email }}</p>
-    </div>
-
-    <div class="row">
-        <a class="m-2 btn btn-primary" href="#" class="btn btn-primary">Consulter vos véhicules</a>
-        <a class="m-2 btn btn-primary" href="{% url 'vehicles:create' %}">Ajouter un véhicule</a>
-    </div> 
+<main class="m-4 d-flex flex-wrap flex-column align-items-center">
+    <p>Votre nom d'utilisateur: {{ user.username }}!</p>
+    <p>Votre adresse email: {{ user.email }}</p>
+    <p><a class="m-2 btn btn-primary" href="#" class="btn btn-primary">Consulter vos véhicules</a></p>
+    <p><a class="m-2 btn btn-primary" href="{% url 'vehicles:create' %}">Ajouter un véhicule</a></p>
 </main>
 {% endblock %}
