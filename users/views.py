@@ -1,12 +1,14 @@
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.urls import reverse
 
-from .forms import SignupForm
-from .models import User
 from bridges.models import Bridge
 from vehicles.models import Vehicle
+
+from .forms import SignupForm, AvatarChangeForm
+from .models import User
 
 
 def signup(request):
@@ -22,6 +24,7 @@ def signup(request):
     return render(request, 'signup.html', {'signup_form': signup_form})
 
 
+@login_required
 def accountlog(request):
     """ Cette méthode sert à afficher le compte de l'utilisateur """
     vehicles = Vehicle.objects.filter(creator=request.user)
@@ -33,3 +36,16 @@ def accountlog(request):
             "vehicles": vehicles,
         },
     )
+
+
+@login_required
+def avatar_change(request):
+    user = request.user
+    if request.method == 'POST':
+        form = AvatarChangeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save(request)
+            return redirect('accountlog')
+    else:
+        form = AvatarChangeForm()
+    return render(request, 'avatar_change.html', {'form': form})
