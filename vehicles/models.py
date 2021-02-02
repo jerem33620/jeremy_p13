@@ -3,6 +3,7 @@ from uuid import uuid4
 
 from django.db import models
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 
 
 def get_vehicle_path(instance, filename):
@@ -16,60 +17,62 @@ def get_vehicle_path(instance, filename):
 
 class Vehicle(models.Model):
     TUNNEL_CATEGORIES = (
-        ('A', 'Tunnel category A'),
-        ('B', 'Tunnel category B'),
-        ('C', 'Tunnel category C'),
-        ('D', 'Tunnel category D'),
-        ('E', 'Tunnel category E'),
+        ('X', _('No tunnel category')),
+        ('A', _('Tunnel category A')),
+        ('B', _('Tunnel category B')),
+        ('C', _('Tunnel category C')),
+        ('D', _('Tunnel category D')),
+        ('E', _('Tunnel category E')),
     )
     TRUCK_TYPES = (
-        ("S", "Straight"),
-        ("T", "Tractor"),
+        ("C", _("Car")),
+        ("S", _("Straight truck")),
+        ("T", _("Tractor truck")),
     )
     name = models.CharField(
-        "vehicle name",
+        _("vehicle name"),
         max_length=200,
         blank=None,
         null=True,
     )
     gross_weight = models.IntegerField(
-        "vehicle gross weight",
+        _("vehicle gross weight"),
         blank=True,
         null=True,
     )
     height = models.DecimalField(
-        "vehicle height",
+        _("vehicle height"),
         max_digits=4,
         decimal_places=2,
         blank=True,
         null=True,
     )
     width = models.DecimalField(
-        "vehicle width",
+        _("vehicle width"),
         max_digits=4,
         decimal_places=2,
         blank=True,
         null=True,
     )
     length = models.DecimalField(
-        "vehicle length",
+        _("vehicle length"),
         max_digits=4,
         decimal_places=2,
         blank=True,
         null=True,
     )
     has_hazardous_goods = models.BooleanField(
-        'has hazardous goods',
+        _('has hazardous goods'),
         default=False,
     )
     tunnel_category = models.CharField(
-        "vehicle tunnel category",
+        _("vehicle tunnel category"),
         max_length=1,
         choices=TUNNEL_CATEGORIES,
-        default="A",
+        default="X",
     )
     truck_type = models.CharField(
-        "vehicle type",
+        _("vehicle type"),
         max_length=1,
         choices=TRUCK_TYPES,
         default="S",
@@ -81,13 +84,23 @@ class Vehicle(models.Model):
         related_name="vehicles",
     )
     created_date = models.DateTimeField(
-        "vehicle creation date",
+        _("vehicle creation date"),
         auto_now_add=True,
     )
-    updated_update = models.DateTimeField(
-        "last vehicle update date",
+    updated_date = models.DateTimeField(
+        _("last vehicle update date"),
         auto_now=True,
     )
     image = models.ImageField(
-        max_length=255, upload_to=get_vehicle_path, blank=True
+        _("vehicle image"),
+        max_length=255,
+        upload_to=get_vehicle_path,
+        blank=True,
     )
+
+    class Meta:
+        verbose_name = _("vehicle")
+        verbose_name_plural = _("vehicles")
+
+    def __str__(self):
+        return self.name

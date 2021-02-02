@@ -2,8 +2,15 @@ from django.urls import reverse_lazy
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
+from django.views.generic import ListView
 
 from .forms import VehicleCreationForm
+from .models import Vehicle
+
+
+class VehicleList(LoginRequiredMixin, ListView):
+    template_name = 'vehicles/list.html'
+    model = Vehicle
 
 
 class VehicleCreate(LoginRequiredMixin, CreateView):

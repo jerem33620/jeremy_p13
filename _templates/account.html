@@ -26,7 +26,7 @@
         <div class="col-md-10 d-flex flex-column align-items-center">
             <p>Votre nom d'utilisateur: {{ user.username }}!</p>
             <p>Votre adresse email: {{ user.email }}</p>
-            <p><a class="m-2 btn btn-primary" href="#" class="btn btn-primary">Consulter vos véhicules</a></p>
+            <p><a class="m-2 btn btn-primary" href="{% url 'vehicles:list' %}" class="btn btn-primary">Consulter vos véhicules</a></p>
             <p><a class="m-2 btn btn-primary" href="{% url 'vehicles:create' %}">Ajouter un véhicule</a></p>
         </div>
     </div>
