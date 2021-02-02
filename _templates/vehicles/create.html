@@ -106,8 +106,8 @@ $(function () {
         var cropData = $image.cropper("getData");
         $("#id_x").val(cropData["x"]);
         $("#id_y").val(cropData["y"]);
-        $("#id_height").val(cropData["height"]);
-        $("#id_width").val(cropData["width"]);
+        $("#id_image_height").val(cropData["height"]);
+        $("#id_image_width").val(cropData["width"]);
         $("#modal-crop").modal("hide");
     });
   

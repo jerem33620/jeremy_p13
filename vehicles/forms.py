@@ -8,8 +8,8 @@ from .models import Vehicle
 class VehicleCreationForm(forms.ModelForm):
     x = forms.FloatField(required=False, widget=forms.HiddenInput())
     y = forms.FloatField(required=False, widget=forms.HiddenInput())
-    width = forms.FloatField(required=False, widget=forms.HiddenInput())
-    height = forms.FloatField(required=False, widget=forms.HiddenInput())
+    image_width = forms.FloatField(required=False, widget=forms.HiddenInput())
+    image_height = forms.FloatField(required=False, widget=forms.HiddenInput())
 
     class Meta:
         model = Vehicle
@@ -26,19 +26,20 @@ class VehicleCreationForm(forms.ModelForm):
         )
 
     def save(self):
-        super().save()
-        if self.cleaned_data.get('image'):
+        vehicle = super().save()
+        if vehicle.image:
             x = self.cleaned_data.get('x')
             y = self.cleaned_data.get('y')
-            width = self.cleaned_data.get('width')
-            height = self.cleaned_data.get('height')
+            width = self.cleaned_data.get('image_width')
+            height = self.cleaned_data.get('image_height')
+            print(f"x={x}, y={y}, width={width}, height={height}")
 
-            if all((x, y, width, height)):
-                image = Image.open(self.image.path)
+            if x is not None:
+                image = Image.open(vehicle.image.path)
                 cropped_image = image.crop((x, y, x + width, y + height))
                 resized_image = cropped_image.resize(
                     settings.VEHICLE_IMAGE_SIZE, Image.ANTIALIAS
                 )
-                resized_image.save(self.image.path)
+                resized_image.save(vehicle.image.path)
 
         return self
