@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static crispy_forms_tags %}
 
-{% block title %}GPS & GO | Modifiez votre avatar{% endblock title %}
+{% block title %}GPS & GO | Enregistrez un véhicule !{% endblock title %}
 
 {% block header %}
 <header class="masthead">
@@ -9,7 +9,7 @@
         <div class="row align-items-center justify-content-center text-center">
             {% block header_title %}
             <div class="col-lg-10 align-self-end header-top">
-                <h1 class="text-uppercase text-white font-weight-bold">Modifiez votre avatar !</h1>
+                <h1 class="text-uppercase text-white font-weight-bold">Enregistrez un véhicule !</h1>
                 <hr class="divider my-4" />
             </div>
             {% endblock header_title %}
@@ -34,7 +34,7 @@
                 <h4 class="modal-title">Couper la photo</h4>
             </div>
             <div class="modal-body" style="padding: 0;">
-                <img src="" id="avatar-image" style="max-width: 100%;">
+                <img src="" id="vehicle-image" style="max-width: 100%;">
             </div>
             <div class="modal-footer">
                 <div class="btn-group pull-left" role="group">
@@ -60,12 +60,12 @@
 $(function () {
 
     /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
-    $("#id_avatar").change(function () {
+    $("#id_image").change(function () {
         if (this.files && this.files[0]) {
             let reader = new FileReader();
             
             reader.addEventListener('load', (event) => {
-                $("#avatar-image").attr("src", event.target.result);
+                $("#vehicle-image").attr("src", event.target.result);
                 $("#modal-crop").modal("show");
             });
             reader.readAsDataURL(this.files[0]);
@@ -73,15 +73,15 @@ $(function () {
     });
 
     /* SCRIPTS TO HANDLE THE CROPPER BOX */
-    let $image = $("#avatar-image");
+    let $image = $("#vehicle-image");
     let cropBoxData;
     let canvasData;
     $("#modal-crop").on("shown.bs.modal", function () {
         $image.cropper({
             viewMode: 1,
             aspectRatio: 1/1,
-            minCropBoxWidth: {{ avatar_image_min_width }},
-            minCropBoxHeight: {{ avatar_image_min_height }},
+            minCropBoxWidth: {{ vehicle_image_min_width }},
+            minCropBoxHeight: {{ vehicle_image_min_width }},
             ready: function () {
             $image.cropper("setCanvasData", canvasData);
             $image.cropper("setCropBoxData", cropBoxData);

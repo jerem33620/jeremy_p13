@@ -11,6 +11,7 @@ urlpatterns = [
     path('users/', include('django.contrib.auth.urls')),
     path('vehicles/', include('vehicles.urls', namespace='vehicles')),
     path('bridges/', include('bridges.urls', namespace='bridges')),
+    path('routes/', include('routes.urls', namespace='routes')),
 ]
 
 # Handling of media files for development

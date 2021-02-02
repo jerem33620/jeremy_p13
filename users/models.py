@@ -18,4 +18,6 @@ def get_avatar_path(instance, filename):
 class User(AbstractUser):
     """Model representing the website users."""
 
-    avatar = models.ImageField(upload_to=get_avatar_path, blank=True)
+    avatar = models.ImageField(
+        max_length=255, upload_to=get_avatar_path, blank=True
+    )

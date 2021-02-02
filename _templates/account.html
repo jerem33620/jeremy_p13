@@ -17,10 +17,19 @@
 {% endblock %}
 
 {% block content %}
-<main class="m-4 d-flex flex-wrap flex-column align-items-center">
-    <p>Votre nom d'utilisateur: {{ user.username }}!</p>
-    <p>Votre adresse email: {{ user.email }}</p>
-    <p><a class="m-2 btn btn-primary" href="#" class="btn btn-primary">Consulter vos véhicules</a></p>
-    <p><a class="m-2 btn btn-primary" href="{% url 'vehicles:create' %}">Ajouter un véhicule</a></p>
+<main class="container my-4 mx-auto">
+    <div class="row">
+        <div class="mb-4 col-md-2 d-flex flex-column align-items-center">
+            <img src="{% if user.is_authenticated and user.avatar %}{{ user.avatar.url }} {% else %}{% static 'assets/img/avatars/default-avatar.png' %}{% endif %}" alt="{{ user.username }} avatar" id="avatar" class="avatar rounded-circle" width="200" height="200">
+            <p><a href="{% url 'avatar_change' %}">Modifier</a></p>
+        </div>
+        <div class="col-md-10 d-flex flex-column align-items-center">
+            <p>Votre nom d'utilisateur: {{ user.username }}!</p>
+            <p>Votre adresse email: {{ user.email }}</p>
+            <p><a class="m-2 btn btn-primary" href="#" class="btn btn-primary">Consulter vos véhicules</a></p>
+            <p><a class="m-2 btn btn-primary" href="{% url 'vehicles:create' %}">Ajouter un véhicule</a></p>
+        </div>
+    </div>
+    
 </main>
 {% endblock %}

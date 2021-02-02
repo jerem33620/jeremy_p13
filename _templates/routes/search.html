@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{% load static crispy_forms_tags %}
+
+{% block title %}GPS & GO | Recherchez un itinéraire{% endblock title %}
 
 {% block header %}
 <header class="masthead">
@@ -7,24 +9,23 @@
         <div class="row align-items-center justify-content-center text-center">
             {% block header_title %}
             <div class="col-lg-10 align-self-end header-top">
-                <h1 class="text-uppercase text-white font-weight-bold">Enregistrez un nouveau véhicule !</h1>
+                <h1 class="text-uppercase text-white font-weight-bold">Recherchez un itinéraire !</h1>
                 <hr class="divider my-4" />
             </div>
             {% endblock header_title %}
         </div>
     </div>
 </header>
-{% endblock %}
+{% endblock header %}
 
 {% block content %}
-<div class="container">
+<main class="container">
     <div class="row d-flex justify-content-center m-4 flex-column">
-        <form method="post mb-2">
+        <form method="get" action="{% url 'routes:result' %}" class="mb-2">
             {% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}" />
             {{ form|crispy }}
-            <button type="submit" id="button-submit" class="btn btn-primary">Enregistrez</button>
+            <button type="submit" id="button-submit" class="btn btn-primary">Rechercher</button>
         </form>
     </div>
-</div>
-{% endblock %}
+</main>
+{% endblock content %}
