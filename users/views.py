@@ -2,13 +2,11 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from django.urls import reverse
+from django.conf import settings
 
-from bridges.models import Bridge
 from vehicles.models import Vehicle
 
 from .forms import SignupForm, AvatarChangeForm
-from .models import User
 
 
 def signup(request):
@@ -40,7 +38,6 @@ def accountlog(request):
 
 @login_required
 def avatar_change(request):
-    user = request.user
     if request.method == 'POST':
         form = AvatarChangeForm(request.POST, request.FILES)
         if form.is_valid():
@@ -48,4 +45,13 @@ def avatar_change(request):
             return redirect('accountlog')
     else:
         form = AvatarChangeForm()
-    return render(request, 'avatar_change.html', {'form': form})
+    min_width, min_height = settings.USER_AVATAR_SIZE
+    return render(
+        request,
+        'avatar_change.html',
+        {
+            'form': form,
+            'avatar_image_min_width': min_width,
+            'avatar_image_min_height': min_height,
+        },
+    )

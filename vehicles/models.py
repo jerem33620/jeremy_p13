@@ -1,5 +1,17 @@
+import os
+from uuid import uuid4
+
 from django.db import models
 from django.conf import settings
+
+
+def get_vehicle_path(instance, filename):
+    """Computes avatar file path."""
+    upload_to = 'vehicles/'
+    ext = filename.split('.')[-1]
+    filename = f'{instance.creator}-{uuid4().hex}.{ext}'
+    # return the whole path to the file
+    return os.path.join(upload_to, filename)
 
 
 class Vehicle(models.Model):
@@ -46,7 +58,7 @@ class Vehicle(models.Model):
         blank=True,
         null=True,
     )
-    has_hazardous_goods =  models.BooleanField(
+    has_hazardous_goods = models.BooleanField(
         'has hazardous goods',
         default=False,
     )
@@ -75,4 +87,7 @@ class Vehicle(models.Model):
     updated_update = models.DateTimeField(
         "last vehicle update date",
         auto_now=True,
+    )
+    image = models.ImageField(
+        max_length=255, upload_to=get_vehicle_path, blank=True
     )

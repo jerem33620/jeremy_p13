@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'bridges.apps.BridgesConfig',
     'vehicles.apps.VehiclesConfig',
+    'routes.apps.RoutesConfig',
 ]
 
 MIDDLEWARE = [
@@ -144,4 +145,5 @@ BOUNDING_BOX_HALF_SIDE = 25  # meters
 BRIDGE_MIN_HEIGHT = 2.5  # meters
 BRIDGE_MIN_WIDTH = 3  # meters
 
-USER_AVATAR_SIZE = (200, 200)
+USER_AVATAR_SIZE = (200, 200)  # px
+VEHICLE_IMAGE_SIZE = (300, 300)  # px

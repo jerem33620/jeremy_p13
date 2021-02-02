@@ -127,8 +127,8 @@ class RoutingClient:
             response.raise_for_status()
         except requests.RequestException:
             raise HereApiError("Request to Here.com API failed")
-        data = response.json()
-        if not data['routes']:
-            raise HereApiError("Nothing found")
-        # flexiline is decoded into a list of (lat, lng) tuples
-        return data['routes'][0]['sections'][0]
+        return response.json()
+        # if not data['routes']:
+        #     raise HereApiError("Nothing found")
+        # # flexiline is decoded into a list of (lat, lng) tuples
+        # return data['routes'][0]['sections'][0]

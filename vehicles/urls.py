@@ -4,6 +4,4 @@ from .views import VehicleCreate
 
 app_name = 'vehicles'
 
-urlpatterns = [
-    path('', VehicleCreate.as_view(), name='create')
-]
+urlpatterns = [path('', VehicleCreate.as_view(), name='create')]
