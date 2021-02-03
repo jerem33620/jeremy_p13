@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-02 17:45+0100\n"
+"POT-Creation-Date: 2021-02-03 08:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,9 +18,73 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: bridges/models.py:10
+msgid "bridge height"
+msgstr "hauteur du pont"
+
+#: bridges/models.py:17
+msgid "bridge width"
+msgstr "largeur du pont"
+
+#: bridges/models.py:24
+msgid "bounding box north latitude"
+msgstr "latitude nord de la zone délimitée"
+
+#: bridges/models.py:29
+msgid "bounding box south latitude"
+msgstr "latitude sud de la zone délimitée"
+
+#: bridges/models.py:34
+msgid "bounding box west longitude"
+msgstr "longitude ouest de la zone délimitée"
+
+#: bridges/models.py:39
+msgid "bounding box east longitude"
+msgstr "longitude est de la zone délimitée"
+
+#: bridges/models.py:44
+msgid "bounding box center latitude"
+msgstr "latitude centrale de la zone délimitée"
+
+#: bridges/models.py:49
+msgid "bounding box center longitude"
+msgstr "longitude centrale de la zone délimitée"
+
+#: bridges/models.py:54
+msgid "date of creation"
+msgstr "date de création"
+
+#: bridges/models.py:58
+msgid "date of last update"
+msgstr "date de dernière mise à jour"
+
+#: bridges/models.py:63
+msgid "bridge contributors"
+msgstr "contibuteurs pour ce pont"
+
+#: bridges/models.py:71
+msgid "bridge"
+msgstr "pont"
+
+#: bridges/models.py:72
+msgid "bridges"
+msgstr "ponts"
+
+#: bridges/models.py:106
+msgid "update contributor"
+msgstr "contributeur de la mise à jour"
+
+#: bridges/models.py:112
+msgid "updated bridge"
+msgstr "pont mis à jour"
+
+#: users/models.py:23
+msgid "user avatar"
+msgstr "avatar de l'utilisateur"
+
 #: vehicles/models.py:20
 msgid "No tunnel category"
-msgstr "Aucune catégorie"
+msgstr "Sans catégorie"
 
 #: vehicles/models.py:21
 msgid "Tunnel category A"
@@ -52,7 +116,7 @@ msgstr "Camion droit"
 
 #: vehicles/models.py:30
 msgid "Tractor truck"
-msgstr "Camion avec remorque"
+msgstr "Camion semi-remorque"
 
 #: vehicles/models.py:33
 msgid "vehicle name"
@@ -76,7 +140,7 @@ msgstr "longueur du véhicule"
 
 #: vehicles/models.py:65
 msgid "has hazardous goods"
-msgstr "transporte des substances dangereuses"
+msgstr "transporte des matières dangereuses"
 
 #: vehicles/models.py:69
 msgid "vehicle tunnel category"
@@ -84,24 +148,24 @@ msgstr "catégorie de tunnel du véhicule"
 
 #: vehicles/models.py:75
 msgid "vehicle type"
-msgstr "type de véhicule"
+msgstr "type du véhicule"
 
-#: vehicles/models.py:87
+#: vehicles/models.py:88
 msgid "vehicle creation date"
-msgstr "date de céation du véhicule"
+msgstr "date de création du véhicule"
 
-#: vehicles/models.py:91
+#: vehicles/models.py:92
 msgid "last vehicle update date"
-msgstr "date de dernière mise à jour"
+msgstr "date de dernière mise à jour du véhicule"
 
-#: vehicles/models.py:95
+#: vehicles/models.py:96
 msgid "vehicle image"
 msgstr "image du véhicule"
 
-#: vehicles/models.py:102
+#: vehicles/models.py:103
 msgid "vehicle"
 msgstr "véhicule"
 
-#: vehicles/models.py:103
+#: vehicles/models.py:104
 msgid "vehicles"
 msgstr "véhicules"

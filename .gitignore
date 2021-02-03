@@ -6,4 +6,6 @@ env/
 venv/
 node_modules/
 db.sqlite3
+_media/*
+!_media/.gitkeep
 .DS_Store

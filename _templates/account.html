@@ -21,7 +21,7 @@
     <div class="row">
         <div class="mb-4 col-md-2 d-flex flex-column align-items-center">
             <img src="{% if user.is_authenticated and user.avatar %}{{ user.avatar.url }} {% else %}{% static 'assets/img/avatars/default-avatar.png' %}{% endif %}" alt="{{ user.username }} avatar" id="avatar" class="avatar rounded-circle" width="200" height="200">
-            <p><a href="{% url 'avatar_change' %}">Modifier</a></p>
+            <p><a href="{% url 'users:avatar_change' %}">Modifier</a></p>
         </div>
         <div class="col-md-10 d-flex flex-column align-items-center">
             <p>Votre nom d'utilisateur: {{ user.username }}!</p>

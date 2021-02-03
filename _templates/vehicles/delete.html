@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+
+{% block title %}GPS & GO | Enregistrez un véhicule !{% endblock title %}
+
+{% block header %}
+<header class="masthead">
+    <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+            {% block header_title %}
+            <div class="col-lg-10 align-self-end header-top">
+                <h1 class="text-uppercase text-white font-weight-bold">Effacer un véhicule !</h1>
+                <hr class="divider my-4" />
+            </div>
+            {% endblock header_title %}
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block content %}
+<main class="container m-4 d-flex justify-content-center">
+    <form method="post">{% csrf_token %}
+        <p>Est-vous sûr(e) de vouloir supprimer "{{ object }}" ?</p>
+        <button class="btn btn-danger" type="submit">Confirmer</button>
+    </form>
+</main>
+{% endblock content %}

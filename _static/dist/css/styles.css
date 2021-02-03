@@ -10202,7 +10202,6 @@ header.masthead h1 {
   display: flex;
   flex-direction: column;
   width: 280px;
-  height: 450px;
   position: relative;
   border: solid 1px #ddd;
   border-radius: 1rem;

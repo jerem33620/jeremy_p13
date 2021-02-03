@@ -19,15 +19,15 @@
 
 {% block content %}
 <main class="main-content container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <p><a class="btn btn-primary" href="{% url 'vehicles:create' %}">Ajouter un véhicule</a></p>
+    </div>
     <div class="row justify-content-center">
         {% for vehicle in object_list %}
             {% include 'vehicles/vehicle.html' %}
         {% empty %}
             <p>Aucun véhicle n'a été ajouté à votre liste.</p>
         {% endfor %}
-    </div>
-    <div class='class="row d-flex justify-content-center"'>
-        <p><a class="btn btn-primary" href="{% url 'vehicles:create' %}">Ajouter un véhicule</a></p>
     </div>
 </main>
 {% endblock content%}

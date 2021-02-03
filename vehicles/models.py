@@ -2,6 +2,7 @@ import os
 from uuid import uuid4
 
 from django.db import models
+from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
@@ -10,7 +11,7 @@ def get_vehicle_path(instance, filename):
     """Computes avatar file path."""
     upload_to = 'vehicles/'
     ext = filename.split('.')[-1]
-    filename = f'{instance.creator}-{uuid4().hex}.{ext}'
+    filename = f'{instance.owner}-{uuid4().hex}.{ext}'
     # return the whole path to the file
     return os.path.join(upload_to, filename)
 
@@ -77,8 +78,9 @@ class Vehicle(models.Model):
         choices=TRUCK_TYPES,
         default="S",
     )
-    creator = models.ForeignKey(
+    owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        verbose_name='vehicle owner',
         on_delete=models.SET_NULL,
         null=True,
         related_name="vehicles",

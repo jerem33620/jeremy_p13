@@ -5,6 +5,7 @@
         <img src="{% if vehicle.image %}{{ vehicle.image.url }}{% else %}{% static 'assets/img/vehicles/default.png' %}{% endif %}" alt="véhicule - {{ vehicle.name }}" class="vehicle__image">
         <p class="vehicle__name">Nom: {{ vehicle.name|capfirst }}</p>
         <p class="vehicle__name">Type: {{ vehicle.get_truck_type_display }}</p>
-        <a class="vehicle__button btn btn-primary align-self-start" href="#">Editer</a>
+        <a class="vehicle__button align-self-start" href="{% url 'vehicles:edit' vehicle.pk %}">Voir et éditer les détails</a>
+        <a class="vehicle__button align-self-start" href="{% url 'vehicles:delete' vehicle.pk %}">Supprimer</a>
     </div>
 </div>
