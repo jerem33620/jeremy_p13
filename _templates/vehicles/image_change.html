@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static crispy_forms_tags %}
 
-{% block title %}GPS & GO | Enregistrez un véhicule !{% endblock title %}
+{% block title %}GPS & GO | Modifier l'image du véhicule !{% endblock title %}
 
 {% block header %}
 <header class="masthead">
@@ -9,7 +9,7 @@
         <div class="row align-items-center justify-content-center text-center">
             {% block header_title %}
             <div class="col-lg-10 align-self-end header-top">
-                <h1 class="text-uppercase text-white font-weight-bold">Enregistrez un véhicule !</h1>
+                <h1 class="text-uppercase text-white font-weight-bold">Modififier l'image du véhicule !</h1>
                 <hr class="divider my-4" />
             </div>
             {% endblock header_title %}
@@ -19,7 +19,7 @@
 {% endblock header %}
 
 {% block content %}
-<main class="container mx-auto my-4 d-flex justify-content-center">
+<main class="container m-4 d-flex justify-content-center">
     <form method="post" enctype="multipart/form-data"  id="form-upload">
         {% csrf_token %}
         {{ form|crispy }}

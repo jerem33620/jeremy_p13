@@ -46,13 +46,13 @@
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="{% url 'accountlog' %}">Mon compte</a>
+                            <a class="nav-link js-scroll-trigger" href="{% url 'users:profile' %}">Mon compte</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="#">Mes parcours</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="{% url 'vehicles:create' %}">Mes véhicules</a>
+                            <a class="nav-link js-scroll-trigger" href="{% url 'vehicles:list' %}">Mes véhicules</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="{% url 'bridges:create' %}">Enregistrer un pont</a>
@@ -96,7 +96,7 @@
         <!-- Footer-->
         <footer class="bg-dark py-5">
             <div class="container">
-                <div class="small text-center text-light">Copyright © 2021 - Jeremy Guyot</div>
+                <div class="small text-center text-light">Copyright © 2021 - <a href="https://github.com/jerem33620">Jeremy Guyot</a></div>
             </div>
         </footer>
         {% endblock footer %}

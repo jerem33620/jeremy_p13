@@ -1,0 +1,11 @@
+{% load static %}
+
+<div class="vehicle col-lg-4 col-md-6 d-flex justify-content-center">
+    <div class="vehicle__card">
+        <img src="{% if vehicle.image %}{{ vehicle.image.url }}{% else %}{% static 'assets/img/vehicles/default.png' %}{% endif %}" alt="véhicule - {{ vehicle.name }}" class="vehicle__image">
+        <p class="vehicle__name">Nom: {{ vehicle.name|capfirst }}</p>
+        <p class="vehicle__name">Type: {{ vehicle.get_truck_type_display }}</p>
+        <a class="vehicle__button align-self-start" href="{% url 'vehicles:edit' vehicle.pk %}">Voir et éditer les détails</a>
+        <a class="vehicle__button align-self-start" href="{% url 'vehicles:delete' vehicle.pk %}">Supprimer</a>
+    </div>
+</div>

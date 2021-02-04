@@ -4,8 +4,6 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.conf import settings
 
-from vehicles.models import Vehicle
-
 from .forms import SignupForm, AvatarChangeForm
 
 
@@ -23,17 +21,9 @@ def signup(request):
 
 
 @login_required
-def accountlog(request):
-    """ Cette méthode sert à afficher le compte de l'utilisateur """
-    vehicles = Vehicle.objects.filter(creator=request.user)
-    return render(
-        request,
-        "account.html",
-        {
-            "account": request.user,
-            "vehicles": vehicles,
-        },
-    )
+def profile(request):
+    """Displays the profile of the user."""
+    return render(request, "account.html", {"account": request.user})
 
 
 @login_required
@@ -42,7 +32,7 @@ def avatar_change(request):
         form = AvatarChangeForm(request.POST, request.FILES)
         if form.is_valid():
             form.save(request)
-            return redirect('accountlog')
+            return redirect('users:profile')
     else:
         form = AvatarChangeForm()
     min_width, min_height = settings.USER_AVATAR_SIZE
