@@ -2,7 +2,7 @@
 
 ## Créez un GPS pour les automobilistes et routiers
 
-Ce GPS va permettre aux usagers d'enregistrés les dimensions de leurs véhicules et de prendre la route normalement. Si ils ne peuvent pas par exemple continuer leur itinéraire à cause d'un tunnel trop bas en hauteur ou pas assez large, ils pourront alors le signaler sur le site. Une fois signaler, le site va soit prendre en compte que la hauteur du véhicule et dire aux autre usagers que tel dimensions de véhicule ne passe pas et va leurs faire prendre un autre chemin ou sinon, l'usager peut aussi entrée manuellement la hauteur du pont, ainsi que sont emplacement et dans ce cas la, les prochains véhicules ne pourront que passer sous ce pont.
+Ce GPS va permettre aux usagers d'enregistrés les dimensions de leurs véhicules et de prendre la route normalement. S’ils ne peuvent pas par exemple continuer leur itinéraire à cause d'un tunnel trop bas en hauteur ou pas assez large, ils pourront alors le signaler sur le site. Une fois signaler, le site va soit prendre en compte que la hauteur du véhicule et dire aux autres usagers que tel dimensions de véhicule ne passe pas et va leurs faire prendre un autre chemin. Ou sinon, l'usager peut aussi entrée manuellement la hauteur du pont, ainsi que sont emplacement et dans ce cas-là, les prochains véhicules ne pourront que passer sous ce pont.
 Ce projet est réaliser avec Python, Django et Here.
 
 ## Liens :
