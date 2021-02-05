@@ -10201,14 +10201,14 @@ header.masthead h1 {
 .vehicle__card {
   display: flex;
   flex-direction: column;
-  width: 280px;
+  width: 300px;
   position: relative;
   border: solid 1px #ddd;
   border-radius: 1rem;
 }
 
 .vehicle__image {
-  width: 280px;
+  width: 300px;
   height: 300px;
   -o-object-fit: cover;
      object-fit: cover;

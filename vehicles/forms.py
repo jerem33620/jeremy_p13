@@ -14,7 +14,6 @@ class VehicleChangeForm(forms.ModelForm):
             'height',
             'width',
             'length',
-            'has_hazardous_goods',
             'tunnel_category',
             'truck_type',
         )
@@ -62,7 +61,6 @@ class VehicleCreationForm(forms.ModelForm):
             'height',
             'width',
             'length',
-            'has_hazardous_goods',
             'tunnel_category',
             'truck_type',
             'image',

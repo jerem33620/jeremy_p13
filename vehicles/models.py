@@ -6,6 +6,8 @@ from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
+from .managers import VehicleManager
+
 
 def get_vehicle_path(instance, filename):
     """Computes avatar file path."""
@@ -18,8 +20,7 @@ def get_vehicle_path(instance, filename):
 
 class Vehicle(models.Model):
     TUNNEL_CATEGORIES = (
-        ('X', _('No tunnel category')),
-        ('A', _('Tunnel category A')),
+        ('', _('No tunnel category')),
         ('B', _('Tunnel category B')),
         ('C', _('Tunnel category C')),
         ('D', _('Tunnel category D')),
@@ -27,8 +28,8 @@ class Vehicle(models.Model):
     )
     TRUCK_TYPES = (
         ("C", _("Car")),
-        ("S", _("Straight truck")),
-        ("T", _("Tractor truck")),
+        ("S", _("Straight")),
+        ("T", _("Tractor")),
     )
     name = models.CharField(
         _("vehicle name"),
@@ -62,15 +63,11 @@ class Vehicle(models.Model):
         blank=True,
         null=True,
     )
-    has_hazardous_goods = models.BooleanField(
-        _('has hazardous goods'),
-        default=False,
-    )
     tunnel_category = models.CharField(
         _("vehicle tunnel category"),
         max_length=1,
         choices=TUNNEL_CATEGORIES,
-        default="X",
+        blank=True,
     )
     truck_type = models.CharField(
         _("vehicle type"),
@@ -83,7 +80,7 @@ class Vehicle(models.Model):
         verbose_name='vehicle owner',
         on_delete=models.SET_NULL,
         null=True,
-        related_name="vehicles",
+        related_name=_("vehicles"),
     )
     created_date = models.DateTimeField(
         _("vehicle creation date"),
@@ -100,9 +97,24 @@ class Vehicle(models.Model):
         blank=True,
     )
 
+    objects = VehicleManager()
+
     class Meta:
         verbose_name = _("vehicle")
         verbose_name_plural = _("vehicles")
 
     def __str__(self):
         return self.name
+
+    def get_truck_info(self):
+        if self.truck_type == 'C':
+            return {}
+
+        return {
+            'grossWeight': self.gross_weight,
+            'height': self.height,
+            'width': self.width,
+            'length': self.length,
+            'tunnelCategory': self.tunnel_category,
+            'type': self.get_truck_type_display().lower(),
+        }

@@ -85,18 +85,18 @@ class Bridge(models.Model):
         }
 
     @bbox.setter
-    def bbox(self, value):
-        self.longitude_west = value['longitude_west']
-        self.latitude_south = value['latitude_south']
-        self.longitude_east = value['longitude_east']
-        self.latitude_north = value['latitude_north']
+    def bbox(self, values):
+        self.longitude_west = values[0]
+        self.latitude_south = values[1]
+        self.longitude_east = values[2]
+        self.latitude_north = values[3]
 
     @property
     def bbox_string(self):
         """String representation of the bounding box."""
         return (
-            f"bbox:{self.longitude_west},{self.latitude_south},"
-            f"{self.longitude_east},{self.latitude_north}"
+            f"bbox:{self.longitude_west:.7f},{self.latitude_south:.7f},"
+            f"{self.longitude_east:.7f},{self.latitude_north:.7f}"
         )
 
 

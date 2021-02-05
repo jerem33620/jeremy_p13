@@ -1,29 +1,59 @@
 import os
 import json
+import random
 
-from django.shortcuts import render
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from flexpolyline import decode
 
-from geo.clients import RoutingClient
+from vehicles.models import Vehicle
 from .forms import RouteSearchForm
+from .utils import search_route
 
 
-def route_search(request):
-    form = RouteSearchForm()
-    return render(request, 'routes/search.html', {'form': form})
+class RouteSearchView(LoginRequiredMixin, TemplateView):
+    template_name = 'routes/search.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = RouteSearchForm(self.request.user)
+        return context
 
 
-def route_result(request):
-    origin = request.GET.get('origin')
-    destination = request.GET.get('destination')
-    client = RoutingClient()
-    route = client.get_route(origin, destination)
-    return render(
-        request,
-        'routes/result.html',
-        {
+class RouteResultView(LoginRequiredMixin, TemplateView):
+    template_name = 'routes/result.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        vehicle = self.request.GET.get('vehicle')
+        if vehicle:
+            vehicle = Vehicle.objects.get_own_vehicle_or_none(
+                self.request.user, vehicle
+            )
+        route = search_route(
+            origin=self.request.GET.get('origin'),
+            destination=self.request.GET.get('destination'),
+            vehicle=vehicle,
+        )
+        waypoints = None
+        if route['routes']:
+            waypoints = decode(route['routes'][0]['sections'][0]['polyline'])
+            # Here deep linking support a maximum of 18 waypoints
+            indexes = sorted(
+                random.sample(
+                    range(1, len(waypoints) - 1), min(18, len(waypoints) - 2)
+                )
+            )
+            waypoints = "/".join(
+                f"{lat:.7f},{lng:.7f}"
+                for lat, lng in waypoints[:1]
+                + [waypoints[i] for i in indexes]
+                + waypoints[-1:]
+            )
+        print(json.dumps(route))
+        return {
+            **context,
             'route': json.dumps(route),
-            'origin': origin,
-            'destination': destination,
             'here_key': os.getenv('HERE_JS_API_KEY'),
-        },
-    )
+            'waypoints': waypoints,
+        }
