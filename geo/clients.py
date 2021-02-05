@@ -64,7 +64,7 @@ class RoutingClient:
     def _get_coordinates(self, place):
         """Recovers GPS coordinates of the given place if not already
         coordinates."""
-        if re.match(r"[\d.]+,[\d.]+", place):
+        if re.match(r"-?[\d.]+,-?[\d.]+", place):
             return tuple(place.split(","))
         return tuple(
             str(coord) for coord in self._geocoder.geosearch(place).coordinates
