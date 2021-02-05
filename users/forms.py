@@ -31,10 +31,9 @@ class AvatarChangeForm(forms.Form):
             y = self.cleaned_data.get('y')
             width = self.cleaned_data.get('width')
             height = self.cleaned_data.get('height')
-            print(f"x={x}, y={y}, width={width}, height={height}")
 
             if x is not None:
-                avatar = Image.open(user.avatar)
+                avatar = Image.open(user.avatar.path)
                 cropped_avatar = avatar.crop((x, y, x + width, y + height))
                 resized_avatar = cropped_avatar.resize(
                     settings.USER_AVATAR_SIZE, Image.ANTIALIAS

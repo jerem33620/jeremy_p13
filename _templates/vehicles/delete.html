@@ -19,7 +19,7 @@
 {% endblock header %}
 
 {% block content %}
-<main class="container m-4 d-flex justify-content-center">
+<main class="container mx-auto my-4 d-flex justify-content-center">
     <form method="post">{% csrf_token %}
         <p>Est-vous sûr(e) de vouloir supprimer "{{ object }}" ?</p>
         <button class="btn btn-danger" type="submit">Confirmer</button>

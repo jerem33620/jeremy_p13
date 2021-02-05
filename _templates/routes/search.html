@@ -22,10 +22,32 @@
 <main class="container">
     <div class="row d-flex justify-content-center m-4 flex-column">
         <form method="get" action="{% url 'routes:result' %}" class="mb-2">
-            {% csrf_token %}
             {{ form|crispy }}
             <button type="submit" id="button-submit" class="btn btn-primary">Rechercher</button>
         </form>
     </div>
 </main>
 {% endblock content %}
+
+{% block bottom_scripts %}
+{{ block.super }}
+<script>
+$(function () {
+    function success(position) {
+        const latitude  = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        $("#id_origin").val(`${latitude.toFixed(7)},${longitude.toFixed(7)}`);
+    }
+
+    function error() {
+        // do nothing
+    }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+    }
+    
+});
+</script>
+{% endblock bottom_scripts %}

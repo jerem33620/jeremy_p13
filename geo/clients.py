@@ -94,21 +94,17 @@ class RoutingClient:
 
         # Handle truck parameters
         if transportMode == 'truck' and isinstance(truck, dict):
-            if 'shippedHazardousGoods' in truck:
-                params['truck[shippedHazardousGoods]'] = truck[
-                    'shippedHazardousGoods'
-                ]
-            if 'grossWeight' in truck:
+            if truck.get('grossWeight'):
                 params['truck[grossWeight]'] = truck['grossWeight']
-            if 'height' in truck:
+            if truck.get('height'):
                 params['truck[height]'] = truck['height']
-            if 'width' in truck:
+            if truck.get('width'):
                 params['truck[width]'] = truck['width']
-            if 'length' in truck:
+            if truck.get('length'):
                 params['truck[length]'] = truck['length']
-            if 'tunnelCategory' in truck:
+            if truck.get('tunnelCategory'):
                 params['truck[tunnelCategory]'] = truck['tunnelCategory']
-            if 'type' in truck:
+            if truck.get('type'):
                 params['truck[type]'] = truck['type']
 
         # Handle things to avoid
@@ -116,19 +112,11 @@ class RoutingClient:
             params['avoid[features]'] = ",".join(avoid_features)
 
         if isinstance(avoid_areas, list) and avoid_areas:
-            avoid_areas = [
-                get_bounding_box_string(lat, lng, 50)
-                for lat, lng in avoid_areas
-            ]
-            params['avoid[areas]'] = ",".join(avoid_areas)
-
+            params['avoid[areas]'] = "|".join(avoid_areas)
+        print(params)
         try:
             response = requests.get(url, params=params)
             response.raise_for_status()
         except requests.RequestException:
             raise HereApiError("Request to Here.com API failed")
         return response.json()
-        # if not data['routes']:
-        #     raise HereApiError("Nothing found")
-        # # flexiline is decoded into a list of (lat, lng) tuples
-        # return data['routes'][0]['sections'][0]
