@@ -1,7 +1,6 @@
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, View
