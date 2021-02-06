@@ -9,6 +9,8 @@ from .models import Vehicle
 
 
 class VehicleChangeForm(forms.ModelForm):
+    """Form responsible of getting updated info for a vehicle."""
+
     class Meta:
         model = Vehicle
         fields = (
@@ -23,6 +25,8 @@ class VehicleChangeForm(forms.ModelForm):
 
 
 class VehicleImageChangeForm(forms.Form):
+    """From responsible for handling the upload of a new vehicle image."""
+
     image = forms.FileField(required=False)
     x = forms.FloatField(required=False, widget=forms.HiddenInput())
     y = forms.FloatField(required=False, widget=forms.HiddenInput())
@@ -30,6 +34,7 @@ class VehicleImageChangeForm(forms.Form):
     image_height = forms.FloatField(required=False, widget=forms.HiddenInput())
 
     def save(self, pk, commit=True):
+        """Crops, resize and crop the newly uploaded image."""
         vehicle = Vehicle.objects.get(pk=pk)
         if self.cleaned_data.get('image'):
             image = self.cleaned_data.get('image')
@@ -57,6 +62,9 @@ class VehicleImageChangeForm(forms.Form):
 
 
 class VehicleCreationForm(forms.ModelForm):
+    """Form responsible of gathering the necessary info to create a new
+    vehicle."""
+
     x = forms.FloatField(required=False, widget=forms.HiddenInput())
     y = forms.FloatField(required=False, widget=forms.HiddenInput())
     image_width = forms.FloatField(required=False, widget=forms.HiddenInput())
@@ -76,6 +84,8 @@ class VehicleCreationForm(forms.ModelForm):
         )
 
     def save(self, commit=True):
+        """Saves a new vehicle in database. If an image is uploaded, it is
+        cropped and resized."""
         vehicle = super().save(commit=False)
         if self.cleaned_data.get('image'):
             image = self.cleaned_data.get('image')

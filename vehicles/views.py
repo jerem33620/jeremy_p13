@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView
+from django.views.generic import ListView, View
 from django.contrib import messages
 
 from .forms import (
@@ -16,9 +16,13 @@ from .models import Vehicle
 
 
 class VehicleListView(LoginRequiredMixin, ListView):
+    """View responsible of displaying all the vehicles of the currently logged
+    user."""
+
     template_name = 'vehicles/list.html'
 
     def get_queryset(self):
+        """Recovers all the vehicles owned by the current user."""
         return Vehicle.objects.filter(owner=self.request.user)
 
 
@@ -32,6 +36,9 @@ class VehicleUpdateView(LoginRequiredMixin, UpdateView):
 
 
 class VehicleDeleteView(LoginRequiredMixin, DeleteView):
+    """View responsible of deleting a vehicle. It will display a confirmation
+    page."""
+
     template_name = "vehicles/delete.html"
     model = Vehicle
     success_url = reverse_lazy('vehicles:list')
@@ -63,23 +70,41 @@ class VehicleCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-@login_required
-def image_change_view(request, pk):
-    if request.method == 'POST':
-        form = VehicleImageChangeForm(request.POST, request.FILES)
+class ImageChangeView(LoginRequiredMixin, View):
+    """View responsible of handling the upload of a new image for the selected
+    vehicle."""
+
+    template_name = 'vehicles/image_change.html'
+    form_class = VehicleImageChangeForm
+
+    def get(self, request, pk, *args, **kwargs):
+        """Answers to get HTTP requests: displays the form."""
+        form = self.form_class()
+        min_width, min_height = settings.VEHICLE_IMAGE_SIZE
+        return render(
+            request,
+            self.template_name,
+            {
+                'form': form,
+                'vehicle_image_min_width': min_width,
+                'vehicle_image_min_height': min_height,
+            },
+        )
+
+    def post(self, request, pk, *args, **kwargs):
+        """Answers to post HTTP requests: validates form and save data."""
+        form = self.form_class(request.POST, request.FILES)
         if form.is_valid():
             form.save(pk)
             return redirect('vehicles:edit', pk=pk)
-    else:
-        form = VehicleImageChangeForm()
 
-    min_width, min_height = settings.VEHICLE_IMAGE_SIZE
-    return render(
-        request,
-        'vehicles/image_change.html',
-        {
-            'form': form,
-            'vehicle_image_min_width': min_width,
-            'vehicle_image_min_height': min_height,
-        },
-    )
+        min_width, min_height = settings.VEHICLE_IMAGE_SIZE
+        return render(
+            request,
+            self.template_name,
+            {
+                'form': form,
+                'vehicle_image_min_width': min_width,
+                'vehicle_image_min_height': min_height,
+            },
+        )
