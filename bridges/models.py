@@ -77,12 +77,12 @@ class Bridge(models.Model):
     @property
     def bbox(self):
         """Dictionary representation of the bounding box."""
-        return {
-            'longitude_west': self.longitude_west,
-            'latitude_south': self.latitude_south,
-            'longitude_east': self.longitude_east,
-            'latitude_north': self.latitude_north,
-        }
+        return [
+            self.longitude_west,
+            self.latitude_south,
+            self.longitude_east,
+            self.latitude_north,
+        ]
 
     @bbox.setter
     def bbox(self, values):

@@ -7,9 +7,7 @@ from geo.utils import get_bounding_box
 class BridgeManager(models.Manager):
     """Manager responsible to handle bridge search and creation."""
 
-    def get_or_create(
-        self, latitude, longitude, user, height=None, width=None
-    ):
+    def get_or_create(self, user, latitude, longitude, height, width):
         """Records a new bridge if not already in the database."""
         bounding_box = get_bounding_box(
             latitude, longitude, settings.BOUNDING_BOX_HALF_SIDE
@@ -17,7 +15,7 @@ class BridgeManager(models.Manager):
         created = False
         try:
             # Search bridges whose bounding box include latitude and longitude
-            bridge = self.model.object.filter(
+            bridge = self.model.objects.get(
                 latitude_north__gt=latitude,
                 latitude_south__lt=latitude,
                 longitude_west__lt=longitude,
@@ -28,12 +26,15 @@ class BridgeManager(models.Manager):
             bridge.bbox = bounding_box
         except self.model.DoesNotExist:
             # Create a new bridge, since it does not exist
-            bridge = self.model.object.create(
+            bridge = self.model.objects.create(
                 latitude=latitude,
                 longitude=longitude,
                 height=height,
                 width=width,
-                **bounding_box,
+                longitude_west=bounding_box[0],
+                latitude_south=bounding_box[1],
+                longitude_east=bounding_box[2],
+                latitude_north=bounding_box[3],
             )
             created = True
 
@@ -50,7 +51,7 @@ class BridgeManager(models.Manager):
             bridge.width = width
 
         # Add user in the update history of the current bright info
-        bridge.users.add(user)
+        bridge.contributors.add(user)
 
         bridge.save()
         return bridge, created

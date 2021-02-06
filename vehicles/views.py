@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
+from django.contrib import messages
 
 from .forms import (
     VehicleCreationForm,
@@ -52,6 +53,11 @@ class VehicleCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         """Sets the creator in the form vehicle instance."""
         form.instance.owner = self.request.user
+        messages.add_message(
+            self.request,
+            messages.INFO,
+            'Le nouveau véhicule a été enregistré !',
+        )
         return super().form_valid(form)
 
 

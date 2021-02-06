@@ -1,4 +1,5 @@
 import math
+from decimal import Decimal
 
 # Semi-axes of WGS-84 geoidal reference
 EARTH_RADIUS_EQUATOR = 6378137.0
@@ -7,12 +8,12 @@ EARTH_RADIUS_POLE = 6356752.3
 
 def deg2rad(degrees):
     """Converts an angle from degrees to radians."""
-    return math.pi * degrees / 180.0
+    return math.pi * float(degrees) / 180.0
 
 
 def rad2deg(radians):
     """Converts an angle from radians to degrees."""
-    return 180.0 * radians / math.pi
+    return 180.0 * float(radians) / math.pi
 
 
 def get_earth_radius(latitude):
@@ -46,12 +47,12 @@ def get_bounding_box(latitude_deg, longitude_deg, half_side_meters):
     lng_west = lng - half_side_meters / pradius
     lng_east = lng + half_side_meters / pradius
 
-    return {
-        'longitude_west': rad2deg(lng_west),
-        'latitude_south': rad2deg(lat_south),
-        'longitude_east': rad2deg(lng_east),
-        'latitude_north': rad2deg(lat_north),
-    }
+    return [
+        Decimal(f'{rad2deg(lng_west):.7f}'),
+        Decimal(f'{rad2deg(lat_south)}'),
+        Decimal(f'{rad2deg(lng_east)}'),
+        Decimal(f'{rad2deg(lat_north)}'),
+    ]
 
 
 def get_bounding_box_string(latitude_deg, longitude_deg, half_side_meters):
@@ -64,4 +65,4 @@ def get_bounding_box_string(latitude_deg, longitude_deg, half_side_meters):
     coordinates = get_bounding_box(
         latitude_deg, longitude_deg, half_side_meters
     )
-    return f"bbox:{','.join(coordinates.values)}"
+    return f"bbox:{','.join(str(coord) for coord in coordinates)}"

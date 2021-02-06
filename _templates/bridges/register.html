@@ -19,12 +19,35 @@
 {% block content %}
 <div class="container">
     <div class="row d-flex justify-content-center m-4 flex-column">
-        <form method="post mb-2">
+        <form method="post" class="mb-2">
             {% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}" />
             {{ form|crispy }}
-            <button type="submit" id="button-submit" class="btn btn-primary">Enregistrez</button>
+            <button type="submit" id="button-submit" class="btn btn-primary">Enregistrer</button>
         </form>
     </div>
 </div>
 {% endblock %}
+
+{% block bottom_scripts %}
+{{ block.super }}
+<script>
+$(function () {
+    function success(position) {
+        const latitude  = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        $("#id_latitude").val(latitude.toFixed(7));
+        $("#id_longitude").val(longitude.toFixed(7));
+    }
+
+    function error() {
+        // do nothing
+    }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+    }
+    
+});
+</script>
+{% endblock bottom_scripts %}
