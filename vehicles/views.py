@@ -17,7 +17,9 @@ from .models import Vehicle
 
 class VehicleListView(LoginRequiredMixin, ListView):
     template_name = 'vehicles/list.html'
-    model = Vehicle
+
+    def get_queryset(self):
+        return Vehicle.objects.filter(user=self.request.user)
 
 
 class VehicleUpdateView(LoginRequiredMixin, UpdateView):

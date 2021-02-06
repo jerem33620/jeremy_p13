@@ -73,14 +73,13 @@ class VehicleCreationForm(forms.ModelForm):
             y = self.cleaned_data.get('y')
             width = self.cleaned_data.get('image_width')
             height = self.cleaned_data.get('image_height')
-            print(f"x={x}, y={y}, width={width}, height={height}")
 
-            if x is not None:
-                image = Image.open(vehicle.image.path)
-                cropped_image = image.crop((x, y, x + width, y + height))
-                resized_image = cropped_image.resize(
-                    settings.VEHICLE_IMAGE_SIZE, Image.ANTIALIAS
-                )
-                resized_image.save(vehicle.image.path)
+            # if x is not None:
+            #     image = Image.open(vehicle.image.path)
+            #     cropped_image = image.crop((x, y, x + width, y + height))
+            #     resized_image = cropped_image.resize(
+            #         settings.VEHICLE_IMAGE_SIZE, Image.ANTIALIAS
+            #     )
+            #     resized_image.save(vehicle.image.path)
 
         return self

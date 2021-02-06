@@ -32,12 +32,12 @@ class AvatarChangeForm(forms.Form):
             width = self.cleaned_data.get('width')
             height = self.cleaned_data.get('height')
 
-            if x is not None:
-                avatar = Image.open(user.avatar.path)
-                cropped_avatar = avatar.crop((x, y, x + width, y + height))
-                resized_avatar = cropped_avatar.resize(
-                    settings.USER_AVATAR_SIZE, Image.ANTIALIAS
-                )
-                resized_avatar.save(user.avatar.path)
+            # if x is not None:
+            #     avatar = Image.open(user.avatar.path)
+            #     cropped_avatar = avatar.crop((x, y, x + width, y + height))
+            #     resized_avatar = cropped_avatar.resize(
+            #         settings.USER_AVATAR_SIZE, Image.ANTIALIAS
+            #     )
+            #     resized_avatar.save(user.avatar.path)
 
         return user
