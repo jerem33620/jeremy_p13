@@ -1,5 +1,8 @@
+import io
+
 from django import forms
 from django.conf import settings
+from django.core.files.uploadedfile import SimpleUploadedFile
 from PIL import Image
 
 from .models import Vehicle
@@ -26,23 +29,29 @@ class VehicleImageChangeForm(forms.Form):
     image_width = forms.FloatField(required=False, widget=forms.HiddenInput())
     image_height = forms.FloatField(required=False, widget=forms.HiddenInput())
 
-    def save(self, pk):
+    def save(self, pk, commit=True):
         vehicle = Vehicle.objects.get(pk=pk)
         if self.cleaned_data.get('image'):
-            vehicle.image = self.cleaned_data.get('image')
-            vehicle.save()
+            image = self.cleaned_data.get('image')
             x = self.cleaned_data.get('x')
             y = self.cleaned_data.get('y')
             width = self.cleaned_data.get('image_width')
             height = self.cleaned_data.get('image_height')
 
             if x is not None:
-                image = Image.open(vehicle.image.path)
-                cropped_image = image.crop((x, y, x + width, y + height))
-                resized_image = cropped_image.resize(
-                    settings.VEHICLE_IMAGE_SIZE, Image.ANTIALIAS
+                img = Image.open(io.BytesIO(image.read()))
+                cropped_img = img.crop((x, y, x + width, y + height))
+                resized_img = cropped_img.resize(
+                    settings.USER_AVATAR_SIZE, Image.ANTIALIAS
                 )
-                resized_image.save(vehicle.image.path)
+                buffer = io.BytesIO()
+                resized_img.save(buffer, format=img.format)
+                image = SimpleUploadedFile(
+                    image.name, buffer.getvalue(), image.content_type
+                )
+            vehicle.image = image
+            if commit:
+                vehicle.save()
 
         return vehicle
 
@@ -66,20 +75,28 @@ class VehicleCreationForm(forms.ModelForm):
             'image',
         )
 
-    def save(self):
-        vehicle = super().save()
-        if vehicle.image:
+    def save(self, commit=True):
+        vehicle = super().save(commit=False)
+        if self.cleaned_data.get('image'):
+            image = self.cleaned_data.get('image')
             x = self.cleaned_data.get('x')
             y = self.cleaned_data.get('y')
             width = self.cleaned_data.get('image_width')
             height = self.cleaned_data.get('image_height')
 
-            # if x is not None:
-            #     image = Image.open(vehicle.image.path)
-            #     cropped_image = image.crop((x, y, x + width, y + height))
-            #     resized_image = cropped_image.resize(
-            #         settings.VEHICLE_IMAGE_SIZE, Image.ANTIALIAS
-            #     )
-            #     resized_image.save(vehicle.image.path)
+            if x is not None:
+                img = Image.open(io.BytesIO(image.read()))
+                cropped_img = img.crop((x, y, x + width, y + height))
+                resized_img = cropped_img.resize(
+                    settings.USER_AVATAR_SIZE, Image.ANTIALIAS
+                )
+                buffer = io.BytesIO()
+                resized_img.save(buffer, format=img.format)
+                image = SimpleUploadedFile(
+                    image.name, buffer.getvalue(), image.content_type
+                )
+            vehicle.image = image
+            if commit:
+                vehicle.save()
 
-        return self
+        return vehicle
