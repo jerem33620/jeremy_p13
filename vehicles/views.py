@@ -19,7 +19,7 @@ class VehicleListView(LoginRequiredMixin, ListView):
     template_name = 'vehicles/list.html'
 
     def get_queryset(self):
-        return Vehicle.objects.filter(user=self.request.user)
+        return Vehicle.objects.filter(owner=self.request.user)
 
 
 class VehicleUpdateView(LoginRequiredMixin, UpdateView):
