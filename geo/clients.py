@@ -113,7 +113,6 @@ class RoutingClient:
 
         if isinstance(avoid_areas, list) and avoid_areas:
             params['avoid[areas]'] = "|".join(avoid_areas)
-        print(params)
         try:
             response = requests.get(url, params=params)
             response.raise_for_status()

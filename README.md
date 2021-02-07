@@ -9,7 +9,7 @@ Ce projet est réaliser avec Python, Django et Here.
 
 - Lien Trello: https://trello.com/b/aNvTSP0q/projet-13
 - Lien Github: https://github.com/jerem33620/jeremy_p13
-- Adresse URL:
+- Adresse URL: https://gpsgo-dev.herokuapp.com/
 
 ## Fonctionnalités :
 

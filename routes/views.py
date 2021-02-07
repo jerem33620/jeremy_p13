@@ -50,7 +50,6 @@ class RouteResultView(LoginRequiredMixin, TemplateView):
                 + [waypoints[i] for i in indexes]
                 + waypoints[-1:]
             )
-        print(json.dumps(route))
         return {
             **context,
             'route': json.dumps(route),
