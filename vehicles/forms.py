@@ -106,7 +106,7 @@ class VehicleCreationForm(forms.ModelForm):
                     image.name, buffer.getvalue(), image.content_type
                 )
             vehicle.image = image
-            if commit:
-                vehicle.save()
+        if commit:
+            vehicle.save()
 
         return vehicle

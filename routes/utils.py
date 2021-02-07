@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from vehicles.models import Vehicle
 from bridges.models import Bridge
 from geo.clients import RoutingClient
@@ -9,9 +11,9 @@ def search_route(origin, destination, vehicle):
     search_params = {}
     bridges = []
     if vehicle and vehicle.height:
-        search_params['height__gt'] = vehicle.height * 1.1
+        search_params['height__gt'] = vehicle.height * Decimal('1.1')
     if vehicle and vehicle.width:
-        search_params['width__gt'] = vehicle.width * 1.1
+        search_params['width__gt'] = vehicle.width * Decimal('1.1')
     if search_params:
         bridges = Bridge.objects.filter(**search_params)
     return client.get_route(

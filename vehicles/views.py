@@ -68,6 +68,9 @@ class VehicleCreateView(LoginRequiredMixin, CreateView):
         )
         return super().form_valid(form)
 
+    def form_invalid(self, form):
+        return super().form_invalid(form)
+
 
 class VehicleImageChangeView(LoginRequiredMixin, View):
     """View responsible of handling the upload of a new image for the selected

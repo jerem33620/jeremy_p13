@@ -95,13 +95,13 @@ class RoutingClient:
         # Handle truck parameters
         if transportMode == 'truck' and isinstance(truck, dict):
             if truck.get('grossWeight'):
-                params['truck[grossWeight]'] = truck['grossWeight']
+                params['truck[grossWeight]'] = int(truck['grossWeight'])
             if truck.get('height'):
-                params['truck[height]'] = truck['height']
+                params['truck[height]'] = int(truck['height'])
             if truck.get('width'):
-                params['truck[width]'] = truck['width']
+                params['truck[width]'] = int(truck['width'])
             if truck.get('length'):
-                params['truck[length]'] = truck['length']
+                params['truck[length]'] = int(truck['length'])
             if truck.get('tunnelCategory'):
                 params['truck[tunnelCategory]'] = truck['tunnelCategory']
             if truck.get('type'):
@@ -113,6 +113,7 @@ class RoutingClient:
 
         if isinstance(avoid_areas, list) and avoid_areas:
             params['avoid[areas]'] = "|".join(avoid_areas)
+        print(params)
         try:
             response = requests.get(url, params=params)
             response.raise_for_status()
