@@ -1,7 +1,8 @@
 from django.test import TestCase
 from django.utils.translation import activate
+from django.contrib.auth import get_user_model
 
-from vehicles.models import Vehicle
+from vehicles.models import Vehicle, VehicleManager
 from users.models import User
 
 
@@ -220,3 +221,105 @@ class VehicleModelTests(TestCase):
         for letter in "BCDE":
             self.assertIn(letter, choice_letters)
             self.assertIn(f"Catégorie {letter}", choice_descriptions)
+
+    def test_truck_type_field_verbose_name(self):
+        activate('en')
+        self.assertEqual(
+            Vehicle._meta.get_field('truck_type').verbose_name,
+            "vehicle type",
+        )
+        activate('fr')
+        self.assertEqual(
+            Vehicle._meta.get_field('truck_type').verbose_name,
+            "type du véhicule",
+        )
+
+    def test_truck_type_field_max_length(self):
+        self.assertEqual(Vehicle._meta.get_field('truck_type').max_length, 1)
+
+    def test_truck_type_field_default(self):
+        self.assertEqual(Vehicle._meta.get_field('truck_type').default, 'S')
+
+    def test_truck_type_field_not_null(self):
+        self.assertFalse(Vehicle._meta.get_field('truck_type').null)
+
+    def test_truck_type_field_english_choices(self):
+        activate('en')
+        choices = Vehicle._meta.get_field('truck_type').choices
+        choice_letters = [letter for letter, description in choices]
+        choice_descriptions = [description for letter, description in choices]
+        self.assertEqual(len(choices), 3)
+        for letter in "CST":
+            self.assertIn(letter, choice_letters)
+        for description in ('Car', 'Straight', 'Tractor'):
+            self.assertIn(description, choice_descriptions)
+
+    def test_owner_field_verbose_name(self):
+        activate('en')
+        self.assertEqual(
+            Vehicle._meta.get_field('owner').verbose_name,
+            "vehicle owner",
+        )
+
+    def test_owner_field_is_many_to_one(self):
+        self.assertTrue(Vehicle._meta.get_field('owner').many_to_one)
+
+    def test_owner_field_is_not_null(self):
+        self.assertFalse(Vehicle._meta.get_field('owner').null)
+
+    def test_owner_field_related_model(self):
+        self.assertEqual(
+            Vehicle._meta.get_field('owner').related_model, get_user_model()
+        )
+
+    def test_created_date_field_verbose_name(self):
+        activate('en')
+        self.assertEqual(
+            Vehicle._meta.get_field('created_date').verbose_name,
+            'vehicle creation date',
+        )
+
+    def test_created_date_field_not_null(self):
+        self.assertFalse(Vehicle._meta.get_field('created_date').null)
+
+    def test_updated_date_field_verbose_name(self):
+        activate('en')
+        self.assertEqual(
+            Vehicle._meta.get_field('updated_date').verbose_name,
+            'last vehicle update date',
+        )
+
+    def test_updated_date_field_not_null(self):
+        self.assertFalse(Vehicle._meta.get_field('updated_date').null)
+
+    def test_image_field_verbose_name(self):
+        activate('en')
+        self.assertEqual(
+            Vehicle._meta.get_field('image').verbose_name,
+            'vehicle image',
+        )
+
+    def test_image_field_max_length(self):
+        self.assertEqual(Vehicle._meta.get_field('image').max_length, 255)
+
+    def test_objects_is_custom_manager(self):
+        self.assertEqual(type(Vehicle.objects), VehicleManager)
+
+    def test_str_conversion_is_correct(self):
+        string_vehicle = str(self.vehicle)
+        self.assertEqual(string_vehicle, 'Test Vehicle')
+
+    def test_get_truck_info_returns_correct_info(self):
+        info = self.vehicle.get_truck_info()
+        self.assertTrue(isinstance(info, dict))
+        self.assertEqual(
+            info,
+            {
+                'grossWeight': 10000,
+                'height': 4.0,
+                'width': 6.0,
+                'length': 20.0,
+                'tunnelCategory': 'B',
+                'type': 'straight',
+            },
+        )

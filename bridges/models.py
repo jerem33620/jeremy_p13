@@ -72,7 +72,7 @@ class Bridge(models.Model):
         verbose_name_plural = _("bridges")
 
     def __str__(self):
-        return f"({self.latitude}, {self.longitude})"
+        return f"({self.latitude:.7f}, {self.longitude:.7f})"
 
     @property
     def bbox(self):

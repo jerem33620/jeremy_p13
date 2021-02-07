@@ -76,8 +76,7 @@ class Vehicle(models.Model):
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         verbose_name='vehicle owner',
-        on_delete=models.SET_NULL,
-        null=True,
+        on_delete=models.CASCADE,
         related_name=_("vehicles"),
     )
     created_date = models.DateTimeField(
