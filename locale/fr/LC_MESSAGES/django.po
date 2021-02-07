@@ -166,8 +166,3 @@ msgstr "image du véhicule"
 msgid "vehicle"
 msgstr "véhicule"
 
-#~ msgid "Tunnel category A"
-#~ msgstr "Catégorie A"
-
-#~ msgid "has hazardous goods"
-#~ msgstr "transporte des matières dangereuses"
