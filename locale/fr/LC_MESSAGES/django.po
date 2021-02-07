@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-03 13:11+0100\n"
+"POT-Creation-Date: 2021-02-07 10:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,90 +82,92 @@ msgstr "pont mis à jour"
 msgid "user avatar"
 msgstr "avatar de l'utilisateur"
 
-#: vehicles/models.py:21
+#: vehicles/models.py:23
 msgid "No tunnel category"
 msgstr "Sans catégorie"
 
-#: vehicles/models.py:22
-msgid "Tunnel category A"
-msgstr "Catégorie A"
-
-#: vehicles/models.py:23
+#: vehicles/models.py:24
 msgid "Tunnel category B"
 msgstr "Catégorie B"
 
-#: vehicles/models.py:24
+#: vehicles/models.py:25
 msgid "Tunnel category C"
 msgstr "Catégorie C"
 
-#: vehicles/models.py:25
+#: vehicles/models.py:26
 msgid "Tunnel category D"
 msgstr "Catégorie D"
 
-#: vehicles/models.py:26
+#: vehicles/models.py:27
 msgid "Tunnel category E"
 msgstr "Catégorie E"
 
-#: vehicles/models.py:29
+#: vehicles/models.py:30
 msgid "Car"
 msgstr "Voiture"
 
-#: vehicles/models.py:30
-msgid "Straight truck"
+#: vehicles/models.py:31
+#, fuzzy
+#| msgid "Straight truck"
+msgid "Straight"
 msgstr "Camion droit"
 
-#: vehicles/models.py:31
-msgid "Tractor truck"
+#: vehicles/models.py:32
+#, fuzzy
+#| msgid "Tractor truck"
+msgid "Tractor"
 msgstr "Camion semi-remorque"
 
-#: vehicles/models.py:34
+#: vehicles/models.py:35
 msgid "vehicle name"
 msgstr "nom du véhicule"
 
-#: vehicles/models.py:40
+#: vehicles/models.py:41
 msgid "vehicle gross weight"
 msgstr "poids du véhicule"
 
-#: vehicles/models.py:45
+#: vehicles/models.py:46
 msgid "vehicle height"
 msgstr "hauteur du véhicule"
 
-#: vehicles/models.py:52
+#: vehicles/models.py:53
 msgid "vehicle width"
 msgstr "largeur du véhicule"
 
-#: vehicles/models.py:59
+#: vehicles/models.py:60
 msgid "vehicle length"
 msgstr "longueur du véhicule"
 
-#: vehicles/models.py:66
-msgid "has hazardous goods"
-msgstr "transporte des matières dangereuses"
-
-#: vehicles/models.py:70
+#: vehicles/models.py:67
 msgid "vehicle tunnel category"
 msgstr "catégorie de tunnel du véhicule"
 
-#: vehicles/models.py:76
+#: vehicles/models.py:73
 msgid "vehicle type"
 msgstr "type du véhicule"
 
-#: vehicles/models.py:89
+#: vehicles/models.py:83 vehicles/models.py:104
+msgid "vehicles"
+msgstr "véhicules"
+
+#: vehicles/models.py:86
 msgid "vehicle creation date"
 msgstr "date de création du véhicule"
 
-#: vehicles/models.py:93
+#: vehicles/models.py:90
 msgid "last vehicle update date"
 msgstr "date de dernière mise à jour du véhicule"
 
-#: vehicles/models.py:97
+#: vehicles/models.py:94
 msgid "vehicle image"
 msgstr "image du véhicule"
 
-#: vehicles/models.py:104
+#: vehicles/models.py:103
 msgid "vehicle"
 msgstr "véhicule"
 
-#: vehicles/models.py:105
-msgid "vehicles"
-msgstr "véhicules"
+#~ msgid "Tunnel category A"
+#~ msgstr "Catégorie A"
+
+#~ msgid "has hazardous goods"
+#~ msgstr "transporte des matières dangereuses"
