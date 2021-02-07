@@ -16,6 +16,8 @@ sentry-sdk = "*"
 gunicorn = "*"
 pillow = "*"
 coverage = "*"
+tchappui-webdrivers = "*"
+selenium = "*"
 
 [dev-packages]
 
