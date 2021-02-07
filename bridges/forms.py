@@ -6,8 +6,8 @@ from .models import Bridge
 class BridgeCreationForm(forms.Form):
     latitude = forms.DecimalField(label='latitude', required=True)
     longitude = forms.DecimalField(label='longitude', required=True)
-    height = forms.IntegerField(label='hauteur du pont (m)', required=True)
-    width = forms.IntegerField(label='largeur du pont (m)', required=True)
+    height = forms.DecimalField(label='hauteur du pont (m)', required=True)
+    width = forms.DecimalField(label='largeur du pont (m)', required=True)
 
     def __init__(self, request, *args, **kwargs):
         super().__init__(*args, **kwargs)

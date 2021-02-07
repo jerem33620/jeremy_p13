@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import BridgeCreationForm
 
 
-class BridgeCreate(View):
+class BridgeCreate(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         form = BridgeCreationForm(request)
         return render(request, 'bridges/register.html', {'form': form})
